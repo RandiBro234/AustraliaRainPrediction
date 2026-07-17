@@ -51,14 +51,18 @@ I --> J[Save Model PKL]
 ## 📂 Struktur Project
 
 ```
-RainTomorrowPrediction/
+AustraliaRainPrediction/ 
 │
-├── RainTomorrowPrediction.ipynb
-├── weatherAUS.csv
-├── final_catboost_model.pkl
-├── final_threshold.pkl
+├── data/
+│      weatherAUS.csv
+├── notebook/
+│      rain_prediction2.ipynb 
+├── model/
+│      final_catboost_model.pkl 
+│      final_threshold.pkl  
+├── README.md
 ├── requirements.txt
-└── README.md
+└── .gitignoreADME.md
 ```
 
 ---
