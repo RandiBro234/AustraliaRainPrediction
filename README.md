@@ -11,7 +11,7 @@ Proyek ini bertujuan untuk membangun model machine learning yang mampu mempredik
 ```mermaid
 flowchart TD
 
-A[WeatherAUS Dataset] --> B[Exploratory Data Analysis (EDA)]
+A[WeatherAUS Dataset] --> B[Exploratory Data Analysis - EDA]
 
 B --> C[Data Preprocessing]
 
@@ -21,6 +21,7 @@ C2 --> C3[Feature Engineering]
 C3 --> C4[Train Test Split]
 
 C4 --> D1[Baseline Models]
+
 D1 --> E1[Logistic Regression]
 D1 --> E2[Random Forest]
 D1 --> E3[XGBoost]
@@ -42,7 +43,7 @@ G --> H[Model Comparison]
 
 H --> I[Final Model Selection]
 
-I --> J[Model Saving (.pkl)]
+I --> J[Save Model PKL]
 ```
 
 ---
