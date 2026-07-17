@@ -68,7 +68,7 @@ RainTomorrowPrediction/
 ### 1. Clone Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/RandiBro234/AustraliaRainPrediction
 ```
 
 ### 2. Install seluruh dependency
@@ -86,7 +86,7 @@ jupyter notebook
 Kemudian buka:
 
 ```
-RainTomorrowPrediction.ipynb
+rain_prediction2.ipynb
 ```
 
 dan jalankan seluruh cell secara berurutan.
