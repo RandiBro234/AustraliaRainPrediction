@@ -2,19 +2,48 @@
 
 ## 📌 Deskripsi Proyek
 
-Proyek ini bertujuan untuk membangun model Machine Learning yang dapat memprediksi apakah akan terjadi hujan pada hari berikutnya (**RainTomorrow**) berdasarkan kondisi cuaca saat ini.
-
-Dataset yang digunakan adalah **Rain in Australia** yang berisi data historis cuaca dari berbagai lokasi di Australia.
+Proyek ini bertujuan untuk membangun model machine learning yang mampu memprediksi apakah akan terjadi hujan pada hari berikutnya (**RainTomorrow**) berdasarkan kondisi cuaca hari ini. Dataset yang digunakan adalah **WeatherAUS (Rain in Australia Dataset)** yang berisi data historis cuaca dari berbagai lokasi di Australia.
 
 ---
 
-## 🎯 Tujuan
+## 🏗️ Architecture / Pipeline
 
-- Melakukan preprocessing pada dataset cuaca.
-- Melakukan feature engineering untuk meningkatkan kualitas fitur.
-- Membandingkan beberapa algoritma klasifikasi.
-- Memilih model terbaik berdasarkan metrik evaluasi.
-- Mengoptimalkan model menggunakan Hyperparameter Tuning dan Threshold Optimization.
+```mermaid
+flowchart TD
+
+A[WeatherAUS Dataset] --> B[Exploratory Data Analysis (EDA)]
+
+B --> C[Data Preprocessing]
+
+C --> C1[Remove Missing Target]
+C1 --> C2[Missing Value Imputation]
+C2 --> C3[Feature Engineering]
+C3 --> C4[Train Test Split]
+
+C4 --> D1[Baseline Models]
+D1 --> E1[Logistic Regression]
+D1 --> E2[Random Forest]
+D1 --> E3[XGBoost]
+
+C4 --> D2[CatBoost Pipeline]
+
+D2 --> F1[Categorical Features]
+F1 --> F2[Class Weight]
+F2 --> F3[CatBoost Training]
+F3 --> F4[Hyperparameter Tuning]
+F4 --> F5[Threshold Optimization]
+
+E1 --> G[Model Evaluation]
+E2 --> G
+E3 --> G
+F5 --> G
+
+G --> H[Model Comparison]
+
+H --> I[Final Model Selection]
+
+I --> J[Model Saving (.pkl)]
+```
 
 ---
 
@@ -38,26 +67,22 @@ RainTomorrowPrediction/
 ### 1. Clone Repository
 
 ```bash
-git clone <repository_url>
+git clone <repository-url>
 ```
 
----
-
-### 2. Install Dependencies
+### 2. Install seluruh dependency
 
 ```bash
 pip install -r requirements.txt
 ```
 
----
-
-### 3. Jalankan Notebook
+### 3. Jalankan notebook
 
 ```bash
 jupyter notebook
 ```
 
-Kemudian buka
+Kemudian buka:
 
 ```
 RainTomorrowPrediction.ipynb
@@ -67,16 +92,20 @@ dan jalankan seluruh cell secara berurutan.
 
 ---
 
-## ⚙️ Preprocessing
+## ⚙️ Tahapan Proyek
 
-Tahapan preprocessing yang dilakukan:
-
-- Menghapus data dengan target (`RainTomorrow`) yang kosong.
-- Missing value imputation.
-- Feature engineering.
-- Train-Test Split.
-- Column Transformer (untuk model baseline).
-- Class Weight (khusus CatBoost).
+- Exploratory Data Analysis (EDA)
+- Data Cleaning
+- Missing Value Imputation
+- Feature Engineering
+- Train-Test Split
+- Baseline Model Training
+- CatBoost Training
+- Hyperparameter Tuning
+- Threshold Optimization
+- Model Evaluation
+- Model Comparison
+- Save Final Model
 
 ---
 
@@ -94,7 +123,7 @@ Fitur baru yang dibuat:
 
 ---
 
-## 🤖 Model yang Dibandingkan
+## 🤖 Model yang Diuji
 
 - Logistic Regression
 - Random Forest
@@ -102,13 +131,13 @@ Fitur baru yang dibuat:
 - XGBoost + SMOTE
 - CatBoost
 - CatBoost + Hyperparameter Tuning
-- CatBoost + Threshold Optimization
+- CatBoost + Hyperparameter + Threshold Optimization
 
 ---
 
-## 🏆 Model Terbaik
+## 🏆 Final Model
 
-Model terbaik yang diperoleh adalah:
+Model terbaik:
 
 **CatBoost + Hyperparameter Tuning + Threshold Optimization**
 
@@ -132,18 +161,16 @@ Hasil evaluasi:
 
 ## 📊 Insight
 
-Beberapa insight yang diperoleh dari proyek ini:
-
-- Dataset memiliki distribusi kelas yang tidak seimbang sehingga diperlukan penanganan imbalance menggunakan **class weights** pada CatBoost.
-- Feature engineering membantu menambahkan informasi penting seperti perubahan suhu, tekanan udara, dan kelembapan yang berpotensi meningkatkan performa model.
-- CatBoost memberikan performa terbaik dibandingkan Logistic Regression, Random Forest, dan XGBoost karena mampu menangani fitur kategorikal secara langsung tanpa memerlukan One-Hot Encoding.
-- Hyperparameter tuning meningkatkan kemampuan model dalam membedakan kelas (ROC AUC), sedangkan threshold optimization meningkatkan keseimbangan antara precision dan recall sehingga menghasilkan F1 Score terbaik.
+- Dataset memiliki distribusi kelas yang tidak seimbang sehingga penanganan imbalance dilakukan menggunakan **Class Weight** pada CatBoost.
+- Feature engineering membantu menangkap informasi tambahan seperti perubahan suhu, tekanan udara, dan kelembapan sehingga meningkatkan kualitas prediksi.
+- Dibandingkan Logistic Regression, Random Forest, dan XGBoost, **CatBoost memberikan performa terbaik** karena mampu menangani fitur kategorikal secara langsung tanpa memerlukan One-Hot Encoding.
+- Hyperparameter tuning meningkatkan kemampuan model dalam membedakan kelas, sedangkan threshold optimization menghasilkan keseimbangan precision dan recall yang lebih baik.
 
 ---
 
-## 📚 Library
+## 📦 Dependencies
 
-Seluruh dependency dapat diinstall melalui
+Seluruh library yang diperlukan tersedia pada file:
 
 ```
 requirements.txt
