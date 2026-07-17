@@ -55,7 +55,7 @@ AustraliaRainPrediction/
 ├── data/
 │      weatherAUS.csv
 ├── notebook/
-│      rain_prediction2.ipynb 
+│      rain_prediction.ipynb 
 ├── model/
 │      final_catboost_model.pkl 
 │      final_threshold.pkl  
