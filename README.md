@@ -52,7 +52,6 @@ I --> J[Save Model PKL]
 
 ```
 AustraliaRainPrediction/ 
-│
 ├── data/
 │      weatherAUS.csv
 ├── notebook/
