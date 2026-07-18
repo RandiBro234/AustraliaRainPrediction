@@ -20,30 +20,51 @@ C1 --> C2[Missing Value Imputation]
 C2 --> C3[Feature Engineering]
 C3 --> C4[Train Test Split]
 
-C4 --> D1[Baseline Models]
+%% ===========================================================
+%% Baseline Models
+%% ===========================================================
 
-D1 --> E1[Logistic Regression]
-D1 --> E2[Random Forest]
-D1 --> E3[XGBoost]
+C4 --> D[Baseline Models]
 
-C4 --> D2[CatBoost Pipeline]
+D --> LR[Logistic Regression]
+D --> RF[Random Forest]
+D --> XGB[XGBoost]
+D --> CAT[CatBoost]
 
-D2 --> F1[Categorical Features]
-F1 --> F2[Class Weight]
-F2 --> F3[CatBoost Training]
-F3 --> F4[Hyperparameter Tuning]
-F4 --> F5[Threshold Optimization]
+%% ===========================================================
+%% XGBoost Pipeline
+%% ===========================================================
 
-E1 --> G[Model Evaluation]
-E2 --> G
-E3 --> G
-F5 --> G
+XGB --> X1[XGBoost Baseline]
+X1 --> X2[SMOTE]
+X2 --> X3[XGBoost + SMOTE]
+X3 --> X4[Hyperparameter Tuning]
 
-G --> H[Model Comparison]
+%% ===========================================================
+%% CatBoost Pipeline
+%% ===========================================================
 
-H --> I[Final Model Selection]
+CAT --> C5[Categorical Features]
+C5 --> C6[Class Weight]
+C6 --> C7[CatBoost Training]
+C7 --> C8[Hyperparameter Tuning]
+C8 --> C9[Threshold Optimization]
 
-I --> J[Save Model PKL]
+%% ===========================================================
+%% Evaluation
+%% ===========================================================
+
+LR --> E[Model Evaluation]
+RF --> E
+X4 --> E
+C9 --> E
+
+E --> F[Model Comparison]
+
+F --> G[Select Best Model]
+
+G --> H[Save Final Model (.pkl)]
+G --> I[Save Threshold (.pkl)]
 ```
 
 ---
