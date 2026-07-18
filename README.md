@@ -12,41 +12,59 @@ Proyek ini bertujuan untuk membangun model machine learning yang mampu mempredik
 flowchart TD
 
 A[WeatherAUS Dataset] --> B[Exploratory Data Analysis]
-B --> C[Data Preprocessing]
 
-C --> C1[Remove Missing Target]
-C1 --> C2[Missing Value Imputation]
-C2 --> C3[Feature Engineering]
-C3 --> C4[Train Test Split]
+B --> C[Remove Missing Target]
 
-C4 --> D[Baseline Models]
+C --> D{Model Pipeline}
 
-D --> LR[Logistic Regression]
-D --> RF[Random Forest]
-D --> XGB[XGBoost]
-D --> CAT[CatBoost]
+%% ===========================
+%% Baseline Models
+%% ===========================
+
+D --> E1[Baseline Models]
+
+E1 --> F1[Drop Remaining Missing Values]
+F1 --> F2[Feature Engineering]
+F2 --> F3[Train Test Split]
+
+F3 --> LR[Logistic Regression]
+F3 --> RF[Random Forest]
+F3 --> XGB[XGBoost]
 
 XGB --> X1[XGBoost Baseline]
 X1 --> X2[SMOTE]
-X2 --> X3[XGBoost with SMOTE]
-X3 --> X4[Hyperparameter Tuning]
+X2 --> X3[Hyperparameter Tuning]
 
-CAT --> Y1[Categorical Features]
-Y1 --> Y2[Class Weight]
-Y2 --> Y3[CatBoost Training]
-Y3 --> Y4[Hyperparameter Tuning]
-Y4 --> Y5[Threshold Optimization]
+%% ===========================
+%% CatBoost Pipeline
+%% ===========================
 
-LR --> E[Model Evaluation]
-RF --> E
-X4 --> E
-Y5 --> E
+D --> G1[CatBoost Pipeline]
 
-E --> F[Model Comparison]
-F --> G[Best Model Selection]
+G1 --> G2[Missing Value Imputation]
+G2 --> G3[Feature Engineering]
+G3 --> G4[Train Test Split]
 
-G --> H[Save Final Model]
-G --> I[Save Threshold]
+G4 --> C1[Categorical Features]
+C1 --> C2[Class Weight]
+C2 --> C3[CatBoost Training]
+C3 --> C4[Hyperparameter Tuning]
+C4 --> C5[Threshold Optimization]
+
+%% ===========================
+%% Evaluation
+%% ===========================
+
+LR --> H[Model Evaluation]
+RF --> H
+X3 --> H
+C5 --> H
+
+H --> I[Model Comparison]
+I --> J[Best Model Selection]
+
+J --> K[Save Final Model]
+J --> L[Save Threshold]
 ```
 
 ---
