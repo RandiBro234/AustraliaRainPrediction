@@ -110,7 +110,7 @@ jupyter notebook
 Kemudian buka:
 
 ```
-rain_prediction2.ipynb
+rain_prediction.ipynb
 ```
 
 dan jalankan seluruh cell secara berurutan.
