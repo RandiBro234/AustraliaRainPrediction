@@ -11,60 +11,60 @@ Proyek ini bertujuan untuk membangun model machine learning yang mampu mempredik
 ```mermaid
 flowchart TD
 
-A[WeatherAUS Dataset] --> B[Exploratory Data Analysis - EDA]
+A[WeatherAUS Dataset] --> B[Exploratory Data Analysis]
 
-B --> C[Data Preprocessing]
+B --> C[Remove Missing Target]
 
-C --> C1[Remove Missing Target]
-C1 --> C2[Missing Value Imputation]
-C2 --> C3[Feature Engineering]
-C3 --> C4[Train Test Split]
+C --> D{Model Pipeline}
 
-%% ===========================================================
+%% ===========================
 %% Baseline Models
-%% ===========================================================
+%% ===========================
 
-C4 --> D[Baseline Models]
+D --> E1[Baseline Models]
 
-D --> LR[Logistic Regression]
-D --> RF[Random Forest]
-D --> XGB[XGBoost]
-D --> CAT[CatBoost]
+E1 --> F1[Drop Remaining Missing Values]
+F1 --> F2[Feature Engineering]
+F2 --> F3[Train Test Split]
 
-%% ===========================================================
-%% XGBoost Pipeline
-%% ===========================================================
+F3 --> LR[Logistic Regression]
+F3 --> RF[Random Forest]
+F3 --> XGB[XGBoost]
 
 XGB --> X1[XGBoost Baseline]
 X1 --> X2[SMOTE]
-X2 --> X3[XGBoost + SMOTE]
-X3 --> X4[Hyperparameter Tuning]
+X2 --> X3[Hyperparameter Tuning]
 
-%% ===========================================================
+%% ===========================
 %% CatBoost Pipeline
-%% ===========================================================
+%% ===========================
 
-CAT --> C5[Categorical Features]
-C5 --> C6[Class Weight]
-C6 --> C7[CatBoost Training]
-C7 --> C8[Hyperparameter Tuning]
-C8 --> C9[Threshold Optimization]
+D --> G1[CatBoost Pipeline]
 
-%% ===========================================================
+G1 --> G2[Missing Value Imputation]
+G2 --> G3[Feature Engineering]
+G3 --> G4[Train Test Split]
+
+G4 --> C1[Categorical Features]
+C1 --> C2[Class Weight]
+C2 --> C3[CatBoost Training]
+C3 --> C4[Hyperparameter Tuning]
+C4 --> C5[Threshold Optimization]
+
+%% ===========================
 %% Evaluation
-%% ===========================================================
+%% ===========================
 
-LR --> E[Model Evaluation]
-RF --> E
-X4 --> E
-C9 --> E
+LR --> H[Model Evaluation]
+RF --> H
+X3 --> H
+C5 --> H
 
-E --> F[Model Comparison]
+H --> I[Model Comparison]
+I --> J[Best Model Selection]
 
-F --> G[Select Best Model]
-
-G --> H[Save Final Model (.pkl)]
-G --> I[Save Threshold (.pkl)]
+J --> K[Save Final Model]
+J --> L[Save Threshold]
 ```
 
 ---
