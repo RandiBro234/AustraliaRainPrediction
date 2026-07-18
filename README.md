@@ -11,18 +11,13 @@ Proyek ini bertujuan untuk membangun model machine learning yang mampu mempredik
 ```mermaid
 flowchart TD
 
-A[WeatherAUS Dataset] --> B[Exploratory Data Analysis - EDA]
-
+A[WeatherAUS Dataset] --> B[Exploratory Data Analysis]
 B --> C[Data Preprocessing]
 
 C --> C1[Remove Missing Target]
 C1 --> C2[Missing Value Imputation]
 C2 --> C3[Feature Engineering]
 C3 --> C4[Train Test Split]
-
-%% ===========================================================
-%% Baseline Models
-%% ===========================================================
 
 C4 --> D[Baseline Models]
 
@@ -31,40 +26,27 @@ D --> RF[Random Forest]
 D --> XGB[XGBoost]
 D --> CAT[CatBoost]
 
-%% ===========================================================
-%% XGBoost Pipeline
-%% ===========================================================
-
 XGB --> X1[XGBoost Baseline]
 X1 --> X2[SMOTE]
-X2 --> X3[XGBoost + SMOTE]
+X2 --> X3[XGBoost with SMOTE]
 X3 --> X4[Hyperparameter Tuning]
 
-%% ===========================================================
-%% CatBoost Pipeline
-%% ===========================================================
-
-CAT --> C5[Categorical Features]
-C5 --> C6[Class Weight]
-C6 --> C7[CatBoost Training]
-C7 --> C8[Hyperparameter Tuning]
-C8 --> C9[Threshold Optimization]
-
-%% ===========================================================
-%% Evaluation
-%% ===========================================================
+CAT --> Y1[Categorical Features]
+Y1 --> Y2[Class Weight]
+Y2 --> Y3[CatBoost Training]
+Y3 --> Y4[Hyperparameter Tuning]
+Y4 --> Y5[Threshold Optimization]
 
 LR --> E[Model Evaluation]
 RF --> E
 X4 --> E
-C9 --> E
+Y5 --> E
 
 E --> F[Model Comparison]
+F --> G[Best Model Selection]
 
-F --> G[Select Best Model]
-
-G --> H[Save Final Model (.pkl)]
-G --> I[Save Threshold (.pkl)]
+G --> H[Save Final Model]
+G --> I[Save Threshold]
 ```
 
 ---
