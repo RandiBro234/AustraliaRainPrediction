@@ -61,7 +61,7 @@ AustraliaRainPrediction/
 │      final_threshold.pkl  
 ├── README.md
 ├── requirements.txt
-└── .gitignoreADME.md
+└── .gitignore
 ```
 
 ---
